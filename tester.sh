@@ -9,7 +9,7 @@ diff_res()
 		let "k += 1"
 	else
  		echo -e "\033[0;31m[KO]\033[0m"
-		echo "----------Test $i : ----------" >> diff.txt
+		echo "---------- Test $i : ----------" >> diff.txt
 		echo >> diff.txt
 		echo "$DIFF" >> diff.txt
 		echo >> diff.txt
@@ -41,12 +41,6 @@ do
 	diff_res "real/test$i.txt" "yours/test$i.txt"
 	TMP=$(sed -n ${i}p srcs/test_name.txt)
 done
-# echo "Test $i : Rights for >"
-# ls -la real | grep test1.txt | cut -c-10 > real/test$i.txt
-# ls -la yours | grep test1.txt | cut -c-10 > yours/test$i.txt
-# diff_res "real/test$i.txt" "yours/test$i.txt"
-
-
 
 let "i -= 1"
 if [ $i -eq $k ] ; then
@@ -99,9 +93,3 @@ if [ $i -eq $k ] ; then
          ................................
 "
 	fi
-# export LALA=coucou
-# env
-# cd ..
-# pwd
-# echo $LALA >> file2
-# echo coucou | bash
