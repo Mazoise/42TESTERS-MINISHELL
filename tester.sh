@@ -29,15 +29,24 @@ echo "=========================================="
 echo ""
 i=1
 k=0
-echo "Test $i : Echo and >"
-echo "echo hello" | bash > real/test$i.txt
-echo "echo hello" | ./minishell > yours/test$i.txt
-diff_res "real/test$i.txt" "yours/test$i.txt"
+TMP=$(sed -n ${i}p srcs/test_name.txt)
+while [ "$TMP" != "" ]
+do
+	echo -n "Test $i : "
+	echo $TMP
+	BASH=$(sed -n ${i}p srcs/bash_tests.txt)
+	MINISHELL=$(sed -n ${i}p srcs/minishell_tests.txt)
+	echo $BASH | bash > real/test$i.txt
+	echo $MINISHELL | bash > yours/test$i.txt
+	diff_res "real/test$i.txt" "yours/test$i.txt"
+	TMP=$(sed -n ${i}p srcs/test_name.txt)
+done
+# echo "Test $i : Rights for >"
+# ls -la real | grep test1.txt | cut -c-10 > real/test$i.txt
+# ls -la yours | grep test1.txt | cut -c-10 > yours/test$i.txt
+# diff_res "real/test$i.txt" "yours/test$i.txt"
 
-echo "Test $i : Rights for >"
-ls -la real | grep test1.txt | cut -c-10 > real/test$i.txt
-ls -la yours | grep test1.txt | cut -c-10 > yours/test$i.txt
-diff_res "real/test$i.txt" "yours/test$i.txt"
+
 
 let "i -= 1"
 if [ $i -eq $k ] ; then

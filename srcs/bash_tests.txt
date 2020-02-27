@@ -1,0 +1,2 @@
+echo "echo hello" | bash
+ls -la real | grep test1.txt | cut -c-10
