@@ -1,2 +1,7 @@
 echo "echo hello" | bash
 ls -la real | grep test1.txt | cut -c-10
+echo "env" | bash | grep -v ^_= | LC_ALL=C sort
+echo "env" | env -i bash | grep -v ^_= | LC_ALL=C sort
+echo "pwd" | bash
+cp real/test1.txt real/test6.txt && echo "echo bijour" | bash
+cp real/test1.txt real/test7.txt && echo "echo bijour" | bash >> real/test7.txt && cat real/test7.txt

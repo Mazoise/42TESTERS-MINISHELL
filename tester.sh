@@ -11,6 +11,8 @@ diff_res()
  		echo -e "\033[0;31m[KO]\033[0m"
 		echo "---------- Test $i : ----------" >> diff.txt
 		echo >> diff.txt
+		echo $MINISHELL ":" >> diff.txt
+		echo >> diff.txt
 		echo "$DIFF" >> diff.txt
 		echo >> diff.txt
 	fi
@@ -18,10 +20,11 @@ diff_res()
 	echo ""
 }
 
+PROJECT_PATH=".."
 rm -rf real yours minishell diff.txt
 mkdir real yours
-make -C ..
-cp ../minishell .
+make -C $PROJECT_PATH
+cp $PROJECT_PATH/minishell .
 echo ""
 echo "=========================================="
 echo "============== MINISHELL ================="
