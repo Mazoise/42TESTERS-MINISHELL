@@ -39,8 +39,8 @@ do
 	echo $TMP
 	BASH=$(sed -n ${i}p srcs/bash_tests.txt)
 	MINISHELL=$(sed -n ${i}p srcs/minishell_tests.txt)
-	echo $BASH | bash > real/test$i.txt
-	echo $MINISHELL | bash > yours/test$i.txt
+	echo $BASH | bash >> real/test$i.txt
+	echo $MINISHELL | bash >> yours/test$i.txt
 	diff_res "real/test$i.txt" "yours/test$i.txt"
 	TMP=$(sed -n ${i}p srcs/test_name.txt)
 done

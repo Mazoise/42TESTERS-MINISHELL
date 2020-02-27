@@ -1,7 +1,11 @@
 echo "echo hello" | ./minishell
-ls -la yours | grep test1.txt | cut -c-10
+echo "echo hello > yours/tmp1.txt" | ./minishell && cat yours/tmp1.txt
+echo "echo bijour > yours/tmp1.txt" | ./minishell && cat yours/tmp1.txt
+echo "echo yo >> yours/tmp1.txt" | ./minishell && cat yours/tmp1.txt
+echo "echo coucou >> yours/tmp2.txt" | ./minishell && cat yours/tmp2.txt
+ls -la yours | grep tmp1.txt | cut -c-10
+ls -la yours | grep tmp2.txt | cut -c-10
 echo "env" | ./minishell | grep -v ^_= | LC_ALL=C sort
 echo "env" | env -i ./minishell | grep -v ^_= | LC_ALL=C sort
 echo "pwd" | ./minishell
-cp yours/test1.txt yours/test6.txt && echo "echo bijour" | ./minishell
-cp yours/test1.txt yours/test7.txt && echo "echo bijour" | ./minishell >> yours/test7.txt && cat yours/test7.txt
+echo "export" | ./minishell | LC_ALL=C sort
