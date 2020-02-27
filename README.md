@@ -12,4 +12,4 @@ WARNING - ON CONSTRUCTION /!\
 
 5 - check diff.txt in case of errors
 
-Path to your project's Makefile can be changed in tester.sh (Default : PROJECT_PATH = ../)
+Path to your project's Makefile can be changed in tester.sh (Default : PROJECT_PATH = ..)
