@@ -1,6 +1,7 @@
 # 42TESTERS-MINISHELL
 
 WARNING - ON CONSTRUCTION /!\
+THIS IS NOT A TESTER FOR CORRECTIONS
 
 1 - cd to the folder with your fonctions
 

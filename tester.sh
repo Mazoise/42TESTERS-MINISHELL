@@ -7,6 +7,7 @@ diff_res()
 	if [ "$DIFF" == "" ] ; then
  		echo -e "\033[0;32m[OK]\033[0m"
 		let "k += 1"
+		rm -rf yours/test$i.txt real/test$i.txt
 	else
  		echo -e "\033[0;31m[KO]\033[0m"
 		echo "---------- Test $i : ----------" >> diff.txt
@@ -21,10 +22,14 @@ diff_res()
 }
 
 PROJECT_PATH=".."
-rm -rf real yours minishell diff.txt
+rm -rf real yours minishell diff.txt srcs/bash_tests.txt
 mkdir real yours
 make -C $PROJECT_PATH
 cp $PROJECT_PATH/minishell .
+cp srcs/minishell_tests.txt srcs/bash_tests.txt
+sed -i -e "s/yours/real/g" srcs/bash_tests.txt
+sed -i -e "s/.\/minishell/bash/g" srcs/bash_tests.txt
+rm -rf srcs/bash_tests.txt-e
 echo ""
 echo "=========================================="
 echo "============== MINISHELL ================="
@@ -44,7 +49,7 @@ do
 	diff_res "real/test$i.txt" "yours/test$i.txt"
 	TMP=$(sed -n ${i}p srcs/test_name.txt)
 done
-
+rm -rf real/tmp*.txt yours/tmp*.txt minishell
 let "i -= 1"
 if [ $i -eq $k ] ; then
  		echo -ne "
