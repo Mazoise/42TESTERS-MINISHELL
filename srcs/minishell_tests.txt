@@ -9,3 +9,8 @@ echo "env" | ./minishell | grep -v ^_= | LC_ALL=C sort
 echo "env" | env -i ./minishell | grep -v ^_= | LC_ALL=C sort
 echo "pwd" | ./minishell
 echo "export" | ./minishell | grep -v ^"declare -x _=" | LC_ALL=C sort
+echo 'echo bonjour; echo -n je suis; echo gentil; echo $?' | ./minishell
+echo "echo -n -n One\"argument\"'lo'l; echo \"n\"''ee\"d\"more'?'''\"'\";" | ./minishell
+echo 'cat tester.sh | grep echo | wc; exit | echo RECKT | cat; cat tester.sh | sort' | ./minishell
+echo 'cat tester.sh | grep echo; echo $?; cat tester.sh | grep RECKT | wc; echo $?' | ./minishell
+echo 'cat tester.sh | cat | cat | cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat' | ./minishell
