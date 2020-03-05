@@ -6,7 +6,7 @@ diff_res()
 	if [ "$DIFF" == "" ] ; then
  		echo -ne "\033[0;32m \xE2\x9C\x94	\033[0m"
 		let "k += 1"
-		# rm -rf yours/test$i.txt real/test$i.txt
+		rm -rf yours/test$i.txt real/test$i.txt
 	else
  		echo -ne "\033[0;31m x	\033[0m"
 		echo -n "Test $i : " >> diff.txt
@@ -59,6 +59,15 @@ do
 		echo
 	fi
 done
+echo
+echo
+echo "coucou" > srcs/anti_cheat_diff.txt
+echo "$HOME" >> srcs/anti_cheat_diff.txt
+env | grep ^HOME= >> srcs/anti_cheat_diff.txt
+echo -n "ANTI-CHEAT TEST : "
+./minishell < srcs/anticheat.txt >> yours/anticheat.txt
+cat yours/tmp_cheat.txt | grep ^HOME= >> yours/anticheat.txt
+diff_res "yours/anticheat.txt" "srcs/anti_cheat_diff.txt"
 echo
 rm -rf real/tmp*.txt yours/tmp*.txt minishell
 let "i -= 1"

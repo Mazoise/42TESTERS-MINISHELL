@@ -14,3 +14,5 @@ THIS IS NOT A TESTER FOR CORRECTIONS
 5 - check diff.txt in case of errors
 
 Path to your project's Makefile can be changed in tester.sh (Default : PROJECT_PATH = ..)
+
+Thanks to @Syndraum (roalvare), the best mate ! 
