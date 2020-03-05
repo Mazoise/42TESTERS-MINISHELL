@@ -15,6 +15,10 @@ export SHLVL=coucou && echo "env" | ./minishell | grep SHLVL
 export SHLVL=0 && echo "env" | ./minishell | grep SHLVL
 export SHLVL=12coucou && echo "env" | ./minishell | grep SHLVL
 export SHLVL=-18 && echo "env" | ./minishell | grep SHLVL
+export SHLVL=+28 && echo "env" | ./minishell | grep SHLVL
+export SHLVL=++8 && echo "env" | ./minishell | grep SHLVL
+export SHLVL=78+18 && echo "env" | ./minishell | grep SHLVL
+export SHLVL= && echo "env" | ./minishell | grep SHLVL
 ./minishell srcs/cmds.txt
 ./minishell srcs/cmds.txt bada lala
 ./minishell < srcs/cmds.txt
@@ -46,3 +50,4 @@ echo "echo -n -n One\"argument\"'lo'l; echo \"n\"''ee\"d\"more'?'''\"'\";" | ./m
 echo 'cat tester.sh | grep echo | wc; exit | echo RECKT | cat; cat tester.sh | sort' | ./minishell
 echo 'cat tester.sh | grep echo; echo $?; cat tester.sh | grep RECKT | wc; echo $?' | ./minishell
 echo 'cat tester.sh | cat | cat | cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat' | ./minishell
+echo "unset PWD; cd ..; env | grep ^PWD=" | ./minishell

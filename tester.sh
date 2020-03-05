@@ -67,9 +67,11 @@ env | grep ^HOME= >> srcs/anti_cheat_diff.txt
 echo -n "ANTI-CHEAT TEST : "
 ./minishell < srcs/anticheat.txt >> yours/anticheat.txt
 cat yours/tmp_cheat.txt | grep ^HOME= >> yours/anticheat.txt
+TMP="CHEAT TEST"
+MINISHELL=$(cat srcs/anticheat.txt)
 diff_res "yours/anticheat.txt" "srcs/anti_cheat_diff.txt"
 echo
-rm -rf real/tmp*.txt yours/tmp*.txt minishell
+rm -rf real/tmp*.txt yours/tmp*.txt yours/anticheat.txt minishell
 let "i -= 1"
 if [ $i -eq $k ] ; then
  		echo -ne "
