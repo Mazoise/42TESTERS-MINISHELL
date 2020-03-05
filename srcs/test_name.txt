@@ -6,6 +6,21 @@ ECHO
 RIGHTS FOR >
 RIGHTS FOR >>
 ENV
-ENV WITH NO ENV
+ENV (NO ENV)
 PWD
 EXPORT (NO ARG)
+EXPORT (NO ARG && NO ENV)
+SHLVL (nb changed)
+SHLVL (txt)
+SHLVL (zero)
+SHLVL (nb + txt)
+SHLVL (neg nb)
+ARGV[1]
+EXTRA ARGUMENTS
+<
+EXECUTABLE && <
+""
+''
+$ (WITH ENV VARIABLE)
+"" (AFTER $)
+'' (AFTER $)

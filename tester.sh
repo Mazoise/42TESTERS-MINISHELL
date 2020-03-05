@@ -2,23 +2,24 @@
 
 diff_res()
 {
-	echo ""
 	DIFF=$(diff $1 $2)
 	if [ "$DIFF" == "" ] ; then
- 		echo -e "\033[0;32m[OK]\033[0m"
+ 		echo -ne "\033[0;32m \xE2\x9C\x94	\033[0m"
 		let "k += 1"
-		rm -rf yours/test$i.txt real/test$i.txt
+		# rm -rf yours/test$i.txt real/test$i.txt
 	else
- 		echo -e "\033[0;31m[KO]\033[0m"
-		echo "---------- Test $i : ----------" >> diff.txt
-		echo >> diff.txt
-		echo $MINISHELL ":" >> diff.txt
+ 		echo -ne "\033[0;31m x	\033[0m"
+		echo -n "Test $i : " >> diff.txt
+		echo $TMP >> diff.txt
+		echo $MINISHELL >> diff.txt
 		echo >> diff.txt
 		echo "$DIFF" >> diff.txt
 		echo >> diff.txt
+		echo "<<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>>" >> diff.txt
+		echo "<<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>>" >> diff.txt
+		echo >> diff.txt
 	fi
 	let "i += 1"
-	echo ""
 }
 
 PROJECT_PATH=".."
@@ -40,15 +41,25 @@ k=0
 TMP=$(sed -n ${i}p srcs/test_name.txt)
 while [ "$TMP" != "" ]
 do
-	echo -n "Test $i : "
-	echo $TMP
+	if [ $i -lt 10 ] ; then
+		echo -n "Test   $i :"
+	elif [ $i -lt 100 ] ; then
+		echo -n "Test  $i :"
+	else
+		echo -n "Test $i :"
+	fi
 	BASH=$(sed -n ${i}p srcs/bash_tests.txt)
 	MINISHELL=$(sed -n ${i}p srcs/minishell_tests.txt)
 	echo $BASH | bash >> real/test$i.txt
 	echo $MINISHELL | bash >> yours/test$i.txt
 	diff_res "real/test$i.txt" "yours/test$i.txt"
 	TMP=$(sed -n ${i}p srcs/test_name.txt)
+	let "j = ($i - 1) % 10"
+	if [ $j -eq 0 ] ; then
+		echo
+	fi
 done
+echo
 rm -rf real/tmp*.txt yours/tmp*.txt minishell
 let "i -= 1"
 if [ $i -eq $k ] ; then
@@ -88,7 +99,7 @@ if [ $i -eq $k ] ; then
     ....... MMMMM..    OPPMMP    .,OMI! ....
      ...... MMMM::   o.,OPMP,.o   ::I!! ...
          .... NNM:::.,,OOPM!P,.::::!! ....      \033[0;31m $k / $i : Try Again ! \033[0m
-          .. MMNNNNNOOOOPMO!!IIPPO!!O! .....
+          .. MMNNNNNOOOOPMO!!IIPPO!!O! .....    \033[0;31m    Check diff.txt \033[0m
          ... MMMMMNNNNOO:!!:!!IPPPPOO! ....
            .. MMMMMNNOOMMNNIIIPPPOO!! ......
           ...... MMMONNMMNNNIIIOO!..........

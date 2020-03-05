@@ -9,3 +9,18 @@ echo "env" | ./minishell | grep -v ^_= | LC_ALL=C sort
 echo "env" | env -i ./minishell | grep -v ^_= | LC_ALL=C sort
 echo "pwd" | ./minishell
 echo "export" | ./minishell | grep -v ^"declare -x _=" | LC_ALL=C sort
+echo "export" | env -i ./minishell | grep -v ^"declare -x _=" | LC_ALL=C sort
+export SHLVL=8 && echo "env" | ./minishell | grep SHLVL
+export SHLVL=coucou && echo "env" | ./minishell | grep SHLVL
+export SHLVL=0 && echo "env" | ./minishell | grep SHLVL
+export SHLVL=12coucou && echo "env" | ./minishell | grep SHLVL
+export SHLVL=-18 && echo "env" | ./minishell | grep SHLVL
+./minishell srcs/cmds.txt
+./minishell srcs/cmds.txt bada lala
+echo "echo < srcs/cmds.txt" | ./minishell
+echo "./minishell < srcs/cmds.txt >> yours/tmp3.txt" | ./minishell && cat yours/tmp3.txt
+echo "echo \"coucou\"lala" | ./minishell
+echo "echo \"coucou\"\'lala\'" | ./minishell
+echo "echo $PWD" | ./minishell
+echo "echo $\"PWD\"" | ./minishell
+echo "echo $\'PWD\'" | ./minishell
