@@ -1,0 +1,53 @@
+echo "echo hello" | bash
+echo "echo -n hello" | bash
+echo "echo -n hello      world" | bash
+echo "echo \"coucou\"lala" | bash
+echo "echo \"coucou\"\'lala\'" | bash
+echo "echo -n \"hello      world\"" | bash
+echo "echo \"-n \"hello      world\"\"" | bash
+echo "echo \"-n hello      world\"" | bash
+echo "echo -n hello; echo \"world\"" | bash
+echo "echo hello; echo   -n     world; echo !" | bash
+echo "echo \"\\\\\"" | bash
+echo "echo \"\\n \\n \\n\"" | bash
+echo "echo \"\\n \\\\n \\\\\n\"" | bash
+echo "echo hello\";\"world" | bash
+echo "echo hello \";  \"  world" | bash
+echo "echo hello -n \\n world -n;" | bash
+echo "echo hello > real/tmp1.txt" | bash && cat real/tmp1.txt
+echo "echo bijour > real/tmp1.txt" | bash && cat real/tmp1.txt
+echo "echo yo >> real/tmp1.txt" | bash && cat real/tmp1.txt
+echo "echo coucou >> real/tmp2.txt" | bash && cat real/tmp2.txt
+echo "echo $PWD" | bash
+echo "echo \"$PWD\"" | bash
+echo "echo \'$PWD\'" | bash
+echo "echo $\"PWD\"" | bash
+echo "echo $\'PWD\'" | bash
+echo "echo coucou; echo $?" | bash
+echo 'echo bonjour; echo -n je suis; echo gentil; echo $?' | bash
+echo "echo -n -n One\"argument\"'lo'l; echo \"n\"''ee\"d\"more'?'''\"'\";" | bash
+echo "env" | bash | grep -v ^_= | LC_ALL=C sort
+echo "pwd" | bash
+echo "export" | bash | grep -v ^"declare -x _=" | LC_ALL=C sort
+bash < srcs/cmds.txt
+cat srcs/cmds.txt | bash
+echo "cat < srcs/cmds.txt" | bash
+echo "bash < srcs/cmds.txt >> real/tmp3.txt" | bash && cat real/tmp3.txt
+echo "bash srcs/cmds.txt >> real/tmp3.txt" | bash && cat real/tmp3.txt
+echo "export PWD=coucou; echo $PWD" | bash
+echo "cd ..; echo $PWD; pwd" | bash
+echo "ls" | bash
+echo "env | grep PWD" | bash
+echo "cd $HOME; ls" | bash
+echo "export COUCOU=lala LALA=coucou coucou=lulu le12la=truc _12=truc a_a=bada ____=lolo _1_1=ololo bada= relele ; echo $?; env" | bash  | grep -v ^_= | LC_ALL=C sort
+echo "export COUCOU=lala LALA=coucou; unset COUCOU LALA truc; echo $?; env" | bash  | grep -v ^_= | LC_ALL=C sort
+echo 'cat tester.sh | grep echo | wc; exit | echo RECKT | cat; cat tester.sh | sort' | bash
+echo 'cat tester.sh | grep echo; echo $?; cat tester.sh | grep RECKT | wc; echo $?' | bash
+echo 'cat tester.sh | cat | cat | cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat' | bash
+echo "echo export | bash" | bash | LC_ALL=C sort
+echo "bash ; export" | bash | LC_ALL=C sort
+echo "echo export | ./minishell" | bash | LC_ALL=C sort
+echo "./minishell ; export" | bash | LC_ALL=C sort
+echo "export PATH=$PWD/srcs/test1:$PWD/srcs/test2:$PATH ; testexecpath" | bash
+echo "export PATH=$PWD/srcs/test2:$PWD/srcs/test1:$PATH ; testexecpath" | bash
+echo "export PATH=.:$PWD/srcs/test1:$PWD/srcs/test2:$PATH ; cd srcs/test3; testexecpath" | bash

@@ -1,0 +1,22 @@
+ls -la yours | grep tmp1.txt | cut -c-10
+ls -la yours | grep tmp2.txt | cut -c-10
+echo "env" | env -i ./minishell | grep -v ^_= | LC_ALL=C sort
+echo "export" | env -i ./minishell | grep -v ^"declare -x _=" | LC_ALL=C sort
+export SHLVL=8 && echo "env" | ./minishell | grep SHLVL
+export SHLVL=coucou && echo "env" | ./minishell | grep SHLVL
+export SHLVL=0 && echo "env" | ./minishell | grep SHLVL
+export SHLVL=12coucou && echo "env" | ./minishell | grep SHLVL
+export SHLVL=-18 && echo "env" | ./minishell | grep SHLVL
+export SHLVL=+28 && echo "env" | ./minishell | grep SHLVL
+export SHLVL=++8 && echo "env" | ./minishell | grep SHLVL
+export SHLVL=78+18 && echo "env" | ./minishell | grep SHLVL
+export SHLVL= && echo "env" | ./minishell | grep SHLVL
+./minishell srcs/cmds.txt
+./minishell srcs/cmds.txt bada lala
+echo "echo coucou; echo \$_" | ./minishell
+echo "export PWD=coucou; pwd" | ./minishell
+echo "unset PWD; pwd" | ./minishell
+echo "cd ..; echo $OLDPWD" | ./minishell
+echo "unset PWD; echo $OLDPWD" | ./minishell
+echo "unset PWD; cd ..; echo $OLDPWD" | ./minishell
+echo "unset PWD; cd ..; env | grep ^PWD=" | ./minishell

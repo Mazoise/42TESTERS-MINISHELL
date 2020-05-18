@@ -1,0 +1,3 @@
+coucou
+/home/user42
+HOME=/home/user42

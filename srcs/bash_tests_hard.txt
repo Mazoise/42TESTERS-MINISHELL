@@ -1,0 +1,22 @@
+ls -la real | grep tmp1.txt | cut -c-10
+ls -la real | grep tmp2.txt | cut -c-10
+echo "env" | env -i bash | grep -v ^_= | LC_ALL=C sort
+echo "export" | env -i bash | grep -v ^"declare -x _=" | LC_ALL=C sort
+export SHLVL=8 && echo "env" | bash | grep SHLVL
+export SHLVL=coucou && echo "env" | bash | grep SHLVL
+export SHLVL=0 && echo "env" | bash | grep SHLVL
+export SHLVL=12coucou && echo "env" | bash | grep SHLVL
+export SHLVL=-18 && echo "env" | bash | grep SHLVL
+export SHLVL=+28 && echo "env" | bash | grep SHLVL
+export SHLVL=++8 && echo "env" | bash | grep SHLVL
+export SHLVL=78+18 && echo "env" | bash | grep SHLVL
+export SHLVL= && echo "env" | bash | grep SHLVL
+bash srcs/cmds.txt
+bash srcs/cmds.txt bada lala
+echo "echo coucou; echo \$_" | bash
+echo "export PWD=coucou; pwd" | bash
+echo "unset PWD; pwd" | bash
+echo "cd ..; echo $OLDPWD" | bash
+echo "unset PWD; echo $OLDPWD" | bash
+echo "unset PWD; cd ..; echo $OLDPWD" | bash
+echo "unset PWD; cd ..; env | grep ^PWD=" | bash
