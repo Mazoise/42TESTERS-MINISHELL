@@ -26,28 +26,30 @@ echo "echo $\'PWD\'" | ./minishell
 echo "echo coucou; echo $?" | ./minishell
 echo 'echo bonjour; echo -n je suis; echo gentil; echo $?' | ./minishell
 echo "echo -n -n One\"argument\"'lo'l; echo \"n\"''ee\"d\"more'?'''\"'\";" | ./minishell
-echo "env" | ./minishell | grep -v ^_= | LC_ALL=C sort
 echo "pwd" | ./minishell
+echo "env" | ./minishell | grep -v ^_= | LC_ALL=C sort
 echo "export" | ./minishell | grep -v ^"declare -x _=" | LC_ALL=C sort
-./minishell < srcs/cmds.txt
-cat srcs/cmds.txt | ./minishell
-echo "cat < srcs/cmds.txt" | ./minishell
-echo "./minishell < srcs/cmds.txt >> yours/tmp3.txt" | ./minishell && cat yours/tmp3.txt
-echo "./minishell srcs/cmds.txt >> yours/tmp3.txt" | ./minishell && cat yours/tmp3.txt
 echo "export PWD=coucou; echo $PWD" | ./minishell
-echo "cd ..; echo $PWD; pwd" | ./minishell
-echo "ls" | ./minishell
-echo "env | grep PWD" | ./minishell
-echo "cd $HOME; ls" | ./minishell
 echo "export COUCOU=lala LALA=coucou coucou=lulu le12la=truc _12=truc a_a=bada ____=lolo _1_1=ololo bada= relele ; echo $?; env" | ./minishell  | grep -v ^_= | LC_ALL=C sort
 echo "export COUCOU=lala LALA=coucou; unset COUCOU LALA truc; echo $?; env" | ./minishell  | grep -v ^_= | LC_ALL=C sort
+echo "cd ..; echo $PWD; pwd" | ./minishell
+echo "/bin/ls" | ./minishell
+echo "ls" | ./minishell
+./minishell < srcs/cmds.txt
+echo "bash < srcs/cmds.txt >> yours/tmp3.txt" | ./minishell && cat yours/tmp3.txt
+echo "bash srcs/cmds.txt >> yours/tmp3.txt" | ./minishell && cat yours/tmp3.txt
+echo "echo \"echo coucou\" | bash" | ./minishell
+echo "echo \"echo coucou\" | ./minishell" | ./minishell
+echo "env | grep PWD" | ./minishell
+echo "cd $HOME; ls" | ./minishell
 echo 'cat tester.sh | grep echo | wc; exit | echo RECKT | cat; cat tester.sh | sort' | ./minishell
 echo 'cat tester.sh | grep echo; echo $?; cat tester.sh | grep RECKT | wc; echo $?' | ./minishell
 echo 'cat tester.sh | cat | cat | cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat| cat' | ./minishell
 echo "echo export | bash" | ./minishell | LC_ALL=C sort
 echo "bash ; export" | ./minishell | LC_ALL=C sort
-echo "echo export | ./minishell" | ./minishell | LC_ALL=C sort
 echo "./minishell ; export" | ./minishell | LC_ALL=C sort
 echo "export PATH=$PWD/srcs/test1:$PWD/srcs/test2:$PATH ; testexecpath" | ./minishell
 echo "export PATH=$PWD/srcs/test2:$PWD/srcs/test1:$PATH ; testexecpath" | ./minishell
 echo "export PATH=.:$PWD/srcs/test1:$PWD/srcs/test2:$PATH ; cd srcs/test3; testexecpath" | ./minishell
+echo "cat < srcs/cmds.txt" | ./minishell
+cat srcs/cmds.txt | ./minishell
